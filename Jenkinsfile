@@ -27,6 +27,7 @@ pipeline {
 
 				steps {
 					script {
+						sh 'echo ${DOCKER_PWD}'
 					}
 				}
                         	
@@ -35,6 +36,7 @@ pipeline {
 
 				steps {
 					script {
+						sh 'echo ${DOCKER_PWD}'
 					}
 				}
 			}	
