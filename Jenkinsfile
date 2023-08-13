@@ -27,6 +27,7 @@ pipeline {
                         	
         		}
         		stage("Deploying to Rancher as load balancer"){
+			}	
            		
 		}
 	}
