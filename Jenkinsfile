@@ -25,13 +25,13 @@ pipeline {
 	                stage("Deploying to Rancher as single pod") {
                         	steps{
                 			script {
-                   				 sh "sudo kubectl set image deployment/d3 container-0=srikar430/swe645-assignment-3:${BUILD_TIMESTAMP} -n a3-n"
+                   				 sh "kubectl set image deployment/d3 container-0=srikar430/swe645-assignment-3:${BUILD_TIMESTAMP} -n a3-n"
                				 }
             			}
         		}
         		stage("Deploying to Rancher as load balancer"){
            			steps {
-                			sh "sudo kubectl set image deployment/d-lb container-0=srikar430/swe645-assignment-3:${BUILD_TIMESTAMP} -n a3-n"
+                			sh "kubectl set image deployment/d-lb container-0=srikar430/swe645-assignment-3:${BUILD_TIMESTAMP} -n a3-n"
             				}
        			}
 		}
