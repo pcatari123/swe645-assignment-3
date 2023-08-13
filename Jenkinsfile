@@ -1,35 +1,38 @@
 pipeline {
 	agent any
 	environment {
-		DOCKER_PWD = 'swe645_homework'
-		DOCKER_TAG = 'v12'
+		DOCKERHUB_PASS = credentials('docker-cred')
 	}
 	stages {
 		stage("Building web app image"){
 				steps {
 					script {
 						checkout scm
-						sh 'mvn clean package'
 						sh 'echo ${DOCKER_PWD}'
 						sh 'echo ${DOCKER_TAG}'
-						sh "docker login -u jinal0217 -p ${DOCKER_PWD}"
-						sh "docker build . -t jinal0217/hw3_backend:${DOCKER_TAG}"
+						sh "docker login -u $DOCKERHUB_PASS_USR -p $DOCKERHUB_PASS_PSW"
+						sh "docker build . -t srikar430/swe645-assignment-3:${BUILD_TIMESTAMP}"
 					}
 				}
 			}
 			stage("Pushing image to dockerhub"){
 			  steps {
 			    script {
-			      sh 'docker push jinal0217/hw3_backend:${DOCKER_TAG}'
+			      sh 'docker push srikar430/swe645-assignment-3:${BUILD_TIMESTAMP}'
 			    }
 			  }
 			}
-			stage("Deploying and executing service on K8"){
-			    steps {
-			      sh 'sed "s/tagVersion/${DOCKER_TAG}/g" deployment.yaml > deployment-app.yaml'
-			      sh 'kubectl apply -f deployment-app.yaml'
-			      sh 'kubectl apply -f service.yaml'
-			    }
-			}
+	                stage("Deploying to Rancher as single pod") {
+                        	steps{
+                			script {
+                   				 sh "kubectl set image deployment/d3 container-0=srikar430/studentsurvey645:${BUILD_TIMESTAMP} -n a2-n"
+               				 }
+            			}
+        		}
+        		stage("Deploying to Rancher as load balancer"){
+           			steps {
+                			sh "kubectl set image deployment/d3-lb container-0=srikar430/studentsurvey645:${BUILD_TIMESTAMP} -n a2-n"
+            				}
+       			}
+		}
 	}
-}
