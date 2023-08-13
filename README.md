@@ -1,5 +1,5 @@
 #### Project Description
-Backend for a Web Application that had a Welcome Page and Tabs which allowed prospective University students to fill out a Survey form with an acknowledgement. The Survey is a feedback about the campus visit. It also had an option to view all surveys filled out by the students till date. Used Intellij IDE to develop a RESTful Web service using Spring and integrated it with the MySQL AWS RDS service. The application was containerized using Docker and deployed on the container orchestration platform Kubernetes on AWS cloud. 
+Backend for a Web Application that had a Welcome Page and Tabs which allowed prospective University students to fill out a Survey form with an acknowledgement. The Survey is a feedback about the campus visit. It also had an option to view all surveys filled out by the students till date. Used Intellij IDE to develop a RESTful Web service using Spring and integrated it with the MySQL AWS RDS service. The application was containerized using Docker and deployed on the contain orchestration platform Kubernetes on AWS cloud. 
 
 #### DOCKER
 Dockerfile contains : Dependencies & Web application related docker definitions
