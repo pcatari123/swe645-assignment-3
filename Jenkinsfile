@@ -24,9 +24,19 @@ pipeline {
 			  }
 			}
 	                stage("Deploying to Rancher as single pod") {
+
+				steps {
+					script {
+					}
+				}
                         	
         		}
         		stage("Deploying to Rancher as load balancer"){
+
+				steps {
+					script {
+					}
+				}
 			}	
            		
 		}
