@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+  namespace: hw2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-app
+          image: jinal0217/hw3_backend:tagVersion
+          imagePullPolicy: Always
+          ports:
+            - name: web
+              containerPort: 9191
+              protocol: TCP
